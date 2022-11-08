@@ -1,26 +1,24 @@
-pipeline {
-agent any
-stages {
-stage ('Compile Stage') {
-steps {
-withMaven(maven : 'apache-maven-3.6.1') {
-bat'mvn clean compile'
-}
-}
-}
-stage ('Testing Stage') {
-steps {
-withMaven(maven : 'apache-maven-3.6.1') {
-bat'mvn test'
-}
-}
-}
-stage ('Install Stage') {
-steps {
-withMaven(maven : 'apache-maven-3.6.1') {
-bat'mvn install'
-}
-}
-}
-}
+pipeline { 
+    agent any 
+    options {
+        skipStagesAfterUnstable()
+    }
+    stages {
+        stage('Build') { 
+            steps { 
+                sh 'make' 
+            }
+        }
+        stage('Test'){
+            steps {
+                sh 'make check'
+                junit 'reports/**/*.xml' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'make publish'
+            }
+        }
+    }
 }
