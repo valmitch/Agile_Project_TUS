@@ -12,8 +12,8 @@ public class SendEmailSSL {
 
     public static void main(String[] args) {
 
-        final String username = "test@gmail.com";
-        final String password = "password123";
+        final String username = "agiletest5@gmail.com";
+        final String password = "Opensource5";
 
         //SMTP settings
         Properties prop = new Properties();
@@ -33,10 +33,10 @@ public class SendEmailSSL {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("from@gmail.com"));
+            message.setFrom(new InternetAddress("agiletest5@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("to_username_a@gmail.com, to_username_b@yahoo.com")
+                    InternetAddress.parse("lukefahyait@gmail.com, agiletest5@gmail.com")
             );
             message.setSubject("Subject Test");
             message.setText("Body Test");
